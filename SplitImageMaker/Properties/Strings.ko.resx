@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="ApplyRatio" xml:space="preserve">
+    <value>비율 적용</value>
+  </data>
+	<data name="Count" xml:space="preserve">
+    <value>개</value>
+  </data>
+	<data name="DragInstruction" xml:space="preserve">
+    <value>마우스를 움직여 영역을 드래그하여 선택</value>
+  </data>
+	<data name="DragMode" xml:space="preserve">
+    <value>드래그 모드</value>
+  </data>
+	<data name="EqualGrid" xml:space="preserve">
+    <value>균등 분할</value>
+  </data>
+	<data name="FinalOutput" xml:space="preserve">
+    <value>최종 출력:</value>
+  </data>
+	<data name="HeightRatio" xml:space="preserve">
+    <value>세로 비율:</value>
+  </data>
+	<data name="Language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+	<data name="LoadSettings" xml:space="preserve">
+    <value>설정 불러오기</value>
+  </data>
+	<data name="MousePosition" xml:space="preserve">
+    <value>마우스: (0, 0)</value>
+  </data>
+	<data name="PanelList" xml:space="preserve">
+    <value>분할 패널 목록</value>
+  </data>
+	<data name="PasteImage" xml:space="preserve">
+    <value>붙여넣기 (Ctrl+V)</value>
+  </data>
+	<data name="PasteToPanel" xml:space="preserve">
+    <value>패널에 붙여넣기</value>
+  </data>
+	<data name="PreviewTitle" xml:space="preserve">
+    <value>이미지 미리보기 및 영역 선택</value>
+  </data>
+	<data name="Ready" xml:space="preserve">
+    <value>준비됨</value>
+  </data>
+	<data name="SaveCombined" xml:space="preserve">
+    <value>합쳐진 이미지 저장</value>
+  </data>
+	<data name="SaveImages" xml:space="preserve">
+    <value>개별 이미지 저장</value>
+  </data>
+	<data name="SaveSettings" xml:space="preserve">
+    <value>설정 저장</value>
+  </data>
+	<data name="SetGrid" xml:space="preserve">
+    <value>분할 설정</value>
+  </data>
+	<data name="SplitAll" xml:space="preserve">
+    <value>전체 분할</value>
+  </data>
+	<data name="SplitCount" xml:space="preserve">
+    <value>분할 수:</value>
+  </data>
+	<data name="SplitSelectedArea" xml:space="preserve">
+    <value>선택된 영역으로 분할</value>
+  </data>
+	<data name="Title" xml:space="preserve">
+    <value>분할이미지메이커 Pro</value>
+  </data>
+	<data name="WidthRatio" xml:space="preserve">
+    <value>가로 비율:</value>
+  </data>
+</root>
