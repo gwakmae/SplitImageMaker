@@ -32,15 +32,11 @@
                     <ColumnDefinition Width="350"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- ✅ FIX: 메인 작업 영역을 그리드로 감싸고 행을 분할 -->
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <!-- 패널 그리드 영역 -->
                         <RowDefinition Height="Auto"/>
-                        <!-- 그리드 스플리터 -->
                         <RowDefinition Height="380"/>
-                        <!-- 미리보기 영역 -->
                     </Grid.RowDefinitions>
 
                     <Grid x:Name="MainSplitGrid" Grid.Row="0" Background="DarkGray" />
@@ -81,7 +77,11 @@
                                         <Border Margin="2" Padding="5" BorderThickness="{Binding IsSelected, Converter={StaticResource IsSelectedToThicknessConverter}}" BorderBrush="{Binding IsSelected, Converter={StaticResource IsSelectedToBrushConverter}}">
                                             <StackPanel>
                                                 <TextBlock Text="{Binding DisplayText}" FontWeight="Bold"/>
-                                                <TextBlock Text="{Binding ImageDimensionsText}" Foreground="DarkSlateGray" Margin="10,0,0,0"/>
+                                                <TextBlock Text="{Binding ImageDimensionsText}" Foreground="DarkSlateGray" Margin="10,0,0,5"/>
+
+                                                <TextBlock Text="Caption:" FontWeight="SemiBold" Margin="10,5,0,0"/>
+                                                <TextBox Text="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                         Margin="10,2,0,0" FontSize="12" AcceptsReturn="True" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>

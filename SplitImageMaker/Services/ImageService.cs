@@ -2,6 +2,7 @@
 using SplitImageMaker.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization; // 추가됨
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
@@ -75,18 +76,21 @@ namespace SplitImageMaker.Services
 
                     foreach (var panel in panels)
                     {
-                        if (panel?.Image == null) continue;
+                        if (panel?.Image != null)
+                        {
+                            int x = xOffsets[panel.Column];
+                            int y = yOffsets[panel.Row];
+                            int cellWidth = colWidths[panel.Column];
+                            int cellHeight = rowHeights[panel.Row];
 
-                        int x = xOffsets[panel.Column];
-                        int y = yOffsets[panel.Row];
-                        int cellWidth = colWidths[panel.Column];
-                        int cellHeight = rowHeights[panel.Row];
+                            drawingContext.DrawImage(panel.Image, new Rect(x, y, panel.Image.PixelWidth, panel.Image.PixelHeight));
+                            drawingContext.DrawRectangle(null, borderPen, new Rect(x, y, cellWidth, cellHeight));
 
-                        // 셀에 이미지 그리기
-                        drawingContext.DrawImage(panel.Image, new Rect(x, y, panel.Image.PixelWidth, panel.Image.PixelHeight));
-
-                        // 셀에 테두리 그리기
-                        drawingContext.DrawRectangle(null, borderPen, new Rect(x, y, cellWidth, cellHeight));
+                            if (!string.IsNullOrWhiteSpace(panel.Caption))
+                            {
+                                RenderCaption(drawingContext, panel, x, y, cellWidth, cellHeight);
+                            }
+                        }
                     }
                 }
 
@@ -146,6 +150,47 @@ namespace SplitImageMaker.Services
                 return new CroppedBitmap(original, cropRect);
             }
             catch { return original; }
+        }
+
+        private void RenderCaption(DrawingContext dc, PanelInfo panel, int x, int y, int cellWidth, int cellHeight)
+        {
+            // ✅ FIX: 폰트를 더 깔끔한 'Segoe UI Black'으로 변경
+            var typeface = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Black, FontStretches.Normal);
+
+            // ✅ FIX: 폰트 크기와 여백을 미세 조정하여 균형감 개선
+            double fontSize = Math.Max(20, cellHeight * 0.09);
+            double padding = cellWidth * 0.05;
+            double bottomMargin = fontSize * 0.4;
+
+            var formattedText = new FormattedText(
+                panel.Caption,
+                CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                typeface,
+                fontSize,
+                Brushes.White,
+                96
+            )
+            {
+                MaxTextWidth = cellWidth - padding,
+                TextAlignment = TextAlignment.Center,
+                MaxTextHeight = cellHeight * 0.4,
+                Trimming = TextTrimming.CharacterEllipsis
+            };
+
+            double textX = x + (cellWidth - formattedText.Width) / 2;
+            double textY = y + cellHeight - formattedText.Height - bottomMargin;
+
+            var textGeometry = formattedText.BuildGeometry(new Point(textX, textY));
+
+            // ✅ FIX: 외곽선 두께를 줄여 '먹물 번짐' 현상 개선 (기존 0.12 -> 0.08)
+            var pen = new Pen(Brushes.Black, fontSize * 0.08)
+            {
+                LineJoin = PenLineJoin.Round
+            };
+            pen.Freeze();
+
+            dc.DrawGeometry(Brushes.White, pen, textGeometry);
         }
     }
 }

@@ -53,10 +53,31 @@ namespace SplitImageMaker.ViewModels
             // ✅ FIX: 패널을 생성하기 전에 비율 리스트의 크기를 동기화하여 오류를 방지합니다.
             GridConfig.SetEqualRatios();
 
+            // ✅ FIX: 메모리 누수 방지를 위해 이전 패널의 이벤트 구독 해제
+            foreach (var panel in Panels)
+            {
+                panel.PropertyChanged -= Panel_PropertyChanged;
+            }
+
             Panels.Clear();
             var newPanels = _gridService.CreatePanels(GridConfig);
-            foreach (var panel in newPanels) Panels.Add(panel);
+            foreach (var panel in newPanels)
+            {
+                // ✅ NEW: 새 패널의 속성 변경 이벤트를 구독하여 캡션 변경 감지
+                panel.PropertyChanged += Panel_PropertyChanged;
+                Panels.Add(panel);
+            }
             UpdateCombinedPreview();
+        }
+
+        // ✅ NEW: 패널 속성 변경 시 호출될 이벤트 핸들러
+        private void Panel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // 캡션이 변경되면 미리보기 업데이트
+            if (e.PropertyName == nameof(PanelInfo.Caption))
+            {
+                UpdateCombinedPreview();
+            }
         }
 
         public void PasteImage()

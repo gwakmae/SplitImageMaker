@@ -8,11 +8,11 @@ namespace SplitImageMaker.Models
     {
         private BitmapSource _image;
         private bool _isSelected;
+        private string _caption = string.Empty; // 캡션 필드 추가
 
         public int Row { get; set; }
         public int Column { get; set; }
 
-        // ✅ FIX: GridService와의 호환성을 위해 속성 복원
         public double WidthRatio { get; set; }
         public double HeightRatio { get; set; }
 
@@ -24,6 +24,17 @@ namespace SplitImageMaker.Models
                 _image = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ImageDimensionsText));
+            }
+        }
+
+        // ✅ NEW: 캡션 속성 추가
+        public string Caption
+        {
+            get => _caption;
+            set
+            {
+                _caption = value;
+                OnPropertyChanged();
             }
         }
 
